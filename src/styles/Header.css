@@ -1,0 +1,57 @@
+/* Header and Navigation Styles */
+.navbar-custom {
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%) !important;
+  box-shadow: 0 6px 22px rgba(13, 41, 67, 0.12);
+  padding: 0.8rem 0;
+  backdrop-filter: saturate(120%) blur(6px);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.brand-logo {
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  color: var(--brand-text) !important;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.brand-logo:hover {
+  color: var(--accent) !important;
+  text-shadow: 0 4px 18px rgba(10, 79, 95, 0.12);
+}
+
+.nav-link-custom {
+  color: var(--brand-text) !important;
+  margin-left: 1rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.nav-link-custom:hover {
+  color: var(--accent) !important;
+  transform: translateY(-2px);
+}
+
+.nav-link-custom::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cta-start), var(--cta-end));
+  transition: width 0.25s ease;
+}
+
+.nav-link-custom:hover::after {
+  width: 100%;
+}
+
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.25rem rgba(10, 79, 95, 0.12) !important;
+}

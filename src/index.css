@@ -1,0 +1,36 @@
+:root {
+  --primary: #0b7285; /* teal-blue */
+  --secondary: #1e3a8a; /* indigo */
+  --accent: #06b6d4; /* cyan */
+  --cta-start: #06b6d4;
+  --cta-end: #1e3a8a;
+  --muted: #f8fafc;
+  --muted-text: #475569;
+  --brand-text: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--muted);
+  color: var(--muted-text);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Respect reduced motion settings to improve performance */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
