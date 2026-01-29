@@ -2,4 +2,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://panifo.vercel.app//sitemap.xml
+Sitemap: https://pancardresizers.netlify.app/sitemap.xml
