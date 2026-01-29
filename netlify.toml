@@ -2,12 +2,31 @@
   command = "npm run build:fast"
   publish = "build"
 
+# IMPORTANT: allow sitemap & robots to bypass SPA routing
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap.xml"
+  status = 200
+
+[[redirects]]
+  from = "/robots.txt"
+  to = "/robots.txt"
+  status = 200
+
+# SPA fallback
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-# Cache policy for static assets to improve load times on repeat visits
+# Sitemap headers
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml"
+    Cache-Control = "public, max-age=3600"
+
+# Cache policy for static assets
 [[headers]]
   for = "/*.js"
   [headers.values]
