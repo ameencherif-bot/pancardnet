@@ -37,9 +37,58 @@ function PanResizer() {
   };
 
   useEffect(() => {
-    // Home embedding: do not override main page title when used embedded
+    // SEO: set page metadata and structured data only on the standalone tool route
     if (window.location.pathname === '/tools/pan-resizer') {
-      document.title = 'PAN Card Resizer — Tools';
+      document.title = 'PAN Card Resizer — Free Online Tool for PAN Image Size & PDF';
+
+      let metaDesc = document.querySelector('meta[name="description"]');
+      let createdDesc = false;
+      if (!metaDesc) {
+        metaDesc = document.createElement('meta');
+        metaDesc.name = 'description';
+        metaDesc.id = 'panresizer-desc';
+        document.head.appendChild(metaDesc);
+        createdDesc = true;
+      }
+      metaDesc.content = 'PAN Card Resizer — Free online tool to resize, crop and download PAN card images to official sizes (UTI & NSDL). Fast, secure, and optimized for upload requirements.';
+
+      let metaKeywords = document.querySelector('meta[name="keywords"]');
+      let createdKeywords = false;
+      if (!metaKeywords) {
+        metaKeywords = document.createElement('meta');
+        metaKeywords.name = 'keywords';
+        metaKeywords.id = 'panresizer-keywords';
+        document.head.appendChild(metaKeywords);
+        createdKeywords = true;
+      }
+      metaKeywords.content = 'pan card resizer, PAN card resizer tool, pan card size, pan card image resizer, pan card cropper, PAN NSDL resizer, PAN UTI resizer';
+
+      const schema = {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "PAN Card Resizer",
+        "url": window.location.origin + '/tools/pan-resizer',
+        "description": metaDesc.content,
+        "applicationCategory": "Utilities",
+        "operatingSystem": "Web",
+        "author": { "@type": "Organization", "name": "PAN Card Central" },
+        "keywords": metaKeywords.content,
+        "image": window.location.origin + '/hero-1200.webp'
+      };
+
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.id = 'panresizer-schema';
+      script.text = JSON.stringify(schema);
+      document.head.appendChild(script);
+
+      return () => {
+        const el = document.getElementById('panresizer-schema');
+        if (el) el.remove();
+        // clean up created meta nodes if we made them
+        const d = document.getElementById('panresizer-desc'); if (d && createdDesc) d.remove();
+        const k = document.getElementById('panresizer-keywords'); if (k && createdKeywords) k.remove();
+      };
     }
   }, []);
 
@@ -166,7 +215,8 @@ function PanResizer() {
     <div className="pan-resizer-page">
       <div className="tool-container">
         <header className="tool-header">
-          <p className="muted ">Select your issuer profile, upload a photo and adjust until perfect.</p>
+         
+          <p className="muted">Resize, crop and optimize PAN card images for official uploads (UTI & NSDL). Fast, secure, and ready for upload.</p>
         </header>
 
         <div className="profile-select center">

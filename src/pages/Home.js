@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, Button, Card } from 'react-bootstrap';
+import { Container, Row, Col, Button, Card, Accordion } from 'react-bootstrap';
 import { DocumentSVG, ResizeSVG, CheckSVG } from '../components/SVGIcons';
 import '../styles/Home.css';
 import PanResizer from './PanResizer';
@@ -16,14 +16,27 @@ function Home() {
       meta.name = 'description';
       document.head.appendChild(meta);
     }
-    meta.content = 'Practical PAN card guides, resizing tips and lightweight tools to prepare your documents quickly and correctly.';
+    meta.content = 'Practical PAN card guides, resizing tips and lightweight tools to prepare and optimize PAN card images quickly — including our free PAN Card Resizer tool for UTI & NSDL upload sizes.';
+
+    let metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (!metaKeywords) {
+      metaKeywords = document.createElement('meta');
+      metaKeywords.name = 'keywords';
+      metaKeywords.content = 'pan card resizer, pan card resize, pan card size, pan card image resizer, PAN UTI NSDL, PAN resizer tool';
+      document.head.appendChild(metaKeywords);
+    } else {
+      // append our target keywords if a keywords tag already exists
+      metaKeywords.content = metaKeywords.content + ', pan card resizer, pan card resizer tool';
+    }
 
     const schema = {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "url": window.location.origin,
       "name": "PAN Card Central",
-      "description": meta.content
+      "description": meta.content,
+      "about": "PAN Card Resizer — free online image resizer for PAN card uploads",
+      "keywords": "pan card resizer, pan card resize, pan card size"
     };
 
     const script = document.createElement('script');
@@ -32,16 +45,43 @@ function Home() {
     script.text = JSON.stringify(schema);
     document.head.appendChild(script);
 
+    // FAQ structured data for SEO
+    const faqData = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Can I use this tool to resize PAN cards for UTI and NSDL?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Select the UTI or NSDL profile, choose Photograph, Signature, or Document, then adjust and download as PNG or PDF as required by the portal." } },
+        { "@type": "Question", "name": "What file types can I download?", "acceptedAnswer": { "@type": "Answer", "text": "Photograph and Signature can be downloaded as PNG; Document type produces a PDF sized to official dimensions for uploads." } },
+        { "@type": "Question", "name": "How do I keep text and photo readable after resizing?", "acceptedAnswer": { "@type": "Answer", "text": "Use moderate compression, keep contrast balanced, and preview the final output to ensure details remain legible." } },
+        { "@type": "Question", "name": "Is my image uploaded to your servers?", "acceptedAnswer": { "@type": "Answer", "text": "No. All processing in this tool happens locally in your browser — files are not uploaded or stored on the server by default." } },
+        { "@type": "Question", "name": "Can I change photo position and zoom?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — drag the image to position it, use the zoom control or mouse wheel, and rotate or adjust brightness as needed." } },
+        { "@type": "Question", "name": "Do you collect or sell user data?", "acceptedAnswer": { "@type": "Answer", "text": "We collect minimal analytics for site performance and do not sell personal data. Images processed with the resizer remain local unless you submit them directly to a portal or share them." } },
+        { "@type": "Question", "name": "What should I do if a portal keeps rejecting my file?", "acceptedAnswer": { "@type": "Answer", "text": "Check the rejection message for file format or size, confirm the exact pixel dimensions, and try a small reduction in compression. If problems persist, contact the receiving portal for specific guidance." } },
+        { "@type": "Question", "name": "Will ads or the site affect my uploads?", "acceptedAnswer": { "@type": "Answer", "text": "The website may show ads for monetization, but ads do not affect the resizer’s local processing. Please review the site’s Disclaimer and Privacy Policy for details." } }
+      ]
+    };
+    const faqScript = document.createElement('script');
+    faqScript.type = 'application/ld+json';
+    faqScript.id = 'home-faq-schema';
+    faqScript.text = JSON.stringify(faqData);
+    document.head.appendChild(faqScript);
+
     // Preload hero image for better LCP and PageSpeed
+    // Preload hero image with image candidates for responsive LCP
     const preloadImg = document.createElement('link');
     preloadImg.rel = 'preload';
     preloadImg.as = 'image';
-    preloadImg.href = '/hero.webp';
+    // imagesrcset imagesizes help preload the exact candidate matching the device
+    preloadImg.setAttribute('imagesrcset', '/hero-1200.avif 1200w, /hero-768.avif 768w, /hero-480.avif 480w');
+    preloadImg.setAttribute('imagesizes', '(max-width: 600px) 480px, (max-width: 960px) 768px, 1200px');
+    preloadImg.href = '/hero-1200.avif';
     document.head.appendChild(preloadImg);
 
     return () => {
       const el = document.getElementById('home-schema');
       if (el) el.remove();
+      const f = document.getElementById('home-faq-schema');
+      if (f) f.remove();
       if (preloadImg) preloadImg.remove();
     };
   }, []);
@@ -72,16 +112,22 @@ function Home() {
             </Col>
             <Col lg={6} className="text-center">
               <div className="hero-image">
-                <img
-                  src="/hero.webp"
-                  alt="PAN Card Resizer Tool"
-                  width="1200"
-                  height="800"
-                  loading="eager"
-                  decoding="async"
-                  fetchpriority="high"
-                  style={{ maxWidth: '100%', height: 'auto', borderRadius: 8 }}
-                />
+                <picture>
+                  <source type="image/avif" srcSet="/hero-1200.avif 1200w, /hero-768.avif 768w, /hero-480.avif 480w" sizes="(max-width: 600px) 480px, (max-width: 960px) 768px, 1200px" />
+                  <source type="image/webp" srcSet="/hero-1200.webp 1200w, /hero-768.webp 768w, /hero-480.webp 480w" sizes="(max-width: 600px) 480px, (max-width: 960px) 768px, 1200px" />
+                  <img
+                    src="/hero-480.webp"
+                    srcSet="/hero-480.webp 480w, /hero-768.webp 768w, /hero-1200.webp 1200w"
+                    sizes="(max-width: 600px) 480px, (max-width: 960px) 768px, 1200px"
+                    alt="PAN Card Resizer Tool"
+                    width="1200"
+                    height="800"
+                    loading="eager"
+                    decoding="async"
+                    fetchpriority="high"
+                    style={{ maxWidth: '100%', height: 'auto', borderRadius: 8, backgroundImage: 'linear-gradient(90deg,#f3f5ff,#fff)', backgroundSize: 'cover' }}
+                  />
+                </picture>
               </div>
             </Col>
           </Row>
@@ -315,6 +361,48 @@ function Home() {
         </Container>
       </section>
 
+      {/* FAQ Section */}
+      <section className="faq-section py-5">
+        <Container>
+          <h2 className="section-title">Frequently Asked Questions</h2>
+          <p className="lead">Quick answers to help you use the <strong>Pan Card Resizer</strong> — tap a question to expand. Opening one will automatically close any other for a focused view.</p>
+          <Accordion defaultActiveKey={null}>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>Can I use this tool to resize PAN cards for UTI and NSDL?</Accordion.Header>
+              <Accordion.Body>Yes. Select the UTI or NSDL profile, choose Photograph, Signature, or Document, then adjust framing and download as PNG or PDF as required by the portal.</Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="1">
+              <Accordion.Header>What file types can I download?</Accordion.Header>
+              <Accordion.Body>Photograph and Signature can be downloaded as PNG; Document type generates a PDF sized to official dimensions for upload.</Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="2">
+              <Accordion.Header>How do I keep text and photo readable after resizing?</Accordion.Header>
+              <Accordion.Body>Use moderate compression, keep brightness/contrast balanced, and preview the final output to make sure all details remain legible.</Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="3">
+              <Accordion.Header>Is my image uploaded to your servers?</Accordion.Header>
+              <Accordion.Body>No — all resizing and processing occurs locally in your browser. Your file stays on your device unless you explicitly upload it elsewhere.</Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="4">
+              <Accordion.Header>Can I change the photo position and zoom?</Accordion.Header>
+              <Accordion.Body>Yes — drag the image to position it, use the mouse wheel or the zoom control, and rotate or adjust brightness/contrast as needed.</Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="5">
+              <Accordion.Header>Do you collect or sell user data?</Accordion.Header>
+              <Accordion.Body>We only collect minimal analytics for performance and do not sell personal data. Images processed by the resizer remain on your device unless you share or upload them.</Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="6">
+              <Accordion.Header>What should I do if a portal keeps rejecting my file?</Accordion.Header>
+              <Accordion.Body>Check the portal’s rejection message for format or size hints, verify pixel dimensions, and try small adjustments to compression. If it persists, contact the portal’s support for specifics.</Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="7">
+              <Accordion.Header>Will ads or site behavior affect my uploads?</Accordion.Header>
+              <Accordion.Body>The site may show ads for revenue, but they do not interfere with local image processing. Review our Privacy Policy and Disclaimer for full details.</Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+        </Container>
+      </section>
+
       {/* Blog Preview Section */}
       <section className="blog-preview-section">
         <Container>
@@ -348,6 +436,39 @@ function Home() {
                   <Card.Body>
                     <h5>Best Practices Guide</h5>
                     <p>Learn the dos and don'ts of document management, including quality preservation and format optimization tips.</p>
+                    <span className="read-more">Read More →</span>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+            <Col md={6} lg={4}>
+              <Link to="/blog/pan-resizer-guide" className="blog-card-link">
+                <Card className="blog-preview-card">
+                  <Card.Body>
+                    <h5>Pan Card Resizer Guide</h5>
+                    <p>A practical, step-by-step guide covering how to use the Pan Card Resizer tool and avoid common upload errors.</p>
+                    <span className="read-more">Read More →</span>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+            <Col md={6} lg={4}>
+              <Link to="/blog/nsdl-vs-uti" className="blog-card-link">
+                <Card className="blog-preview-card">
+                  <Card.Body>
+                    <h5>NSDL vs UTI Explained</h5>
+                    <p>Understand the differences in size and format expectations between NSDL and UTI and how to prepare images for both.</p>
+                    <span className="read-more">Read More →</span>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+            <Col md={6} lg={4}>
+              <Link to="/blog/image-optimization" className="blog-card-link">
+                <Card className="blog-preview-card">
+                  <Card.Body>
+                    <h5>Image Optimization for PAN</h5>
+                    <p>Practical advice on formats, compression and color profiles to keep PAN uploads small and readable.</p>
                     <span className="read-more">Read More →</span>
                   </Card.Body>
                 </Card>

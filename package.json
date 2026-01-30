@@ -14,14 +14,18 @@
     "react-router-dom": "^7.13.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
-    "jspdf": "^2.5.1"
+    "jspdf": "^2.5.1",
+    "sharp": "^0.32.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build:fast": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "optimize:images": "node scripts/optimize-images.js",
+    "generate:sitemap": "node scripts/generate-sitemap.js",
+    "postbuild": "npm run generate:sitemap"
   },
   "eslintConfig": {
     "extends": [

@@ -30,7 +30,7 @@
   </url>
 
   <url>
-    <loc>https://panifo.vercel.app/blog/best-practices</loc>
+    <loc>https://pancardresizers.netlify.app/blog/best-practices</loc>
     <lastmod>2024-01-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -45,6 +45,27 @@
 
   <url>
     <loc>https://pancardresizers.netlify.app/blog/pan-apply-update</loc>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pancardresizers.netlify.app/blog/pan-resizer-guide</loc>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pancardresizers.netlify.app/blog/nsdl-vs-uti</loc>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://pancardresizers.netlify.app/blog/image-optimization</loc>
     <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

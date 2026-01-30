@@ -28,8 +28,11 @@ function Header() {
             <Nav.Link as={Link} to="/blog/best-practices" className="nav-link-custom">
               Best Practices
             </Nav.Link>
-            <Nav.Link as={Link} to="/tools/pan-resizer" className="nav-link-custom">
-              Tools
+            <Nav.Link as={Link} to="/about" className="nav-link-custom">
+              About
+            </Nav.Link>
+            <Nav.Link as={Link} to="/contact" className="nav-link-custom">
+              Contact
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

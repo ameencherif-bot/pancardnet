@@ -251,6 +251,27 @@
     font-size: 2rem;
   }
 
+  .faq-section .accordion-button::after { transform: none; }
+}
+
+/* FAQ polish */
+.faq-section { background: #ffffff; }
+.faq-section .accordion-button {
+  background: linear-gradient(90deg,#fff,#f7fbff);
+  border: 1px solid #e8eefb;
+  box-shadow: 0 6px 20px rgba(10,20,50,0.03);
+  padding: 18px;
+  border-radius: 10px;
+}
+.faq-section .accordion-button:not(.collapsed) {
+  background: linear-gradient(90deg,#f3f5ff,#eef6ff);
+  border-color: #667eea;
+}
+.faq-section .accordion-item { border: none; margin-bottom: 10px; }
+.faq-section .accordion-body { background: #fbfdff; border-radius: 0 0 10px 10px; padding: 18px; }
+.faq-section .lead { color: #374151; }
+.faq-section .section-title { margin-bottom: 1rem; }
+
   .hero-subtitle {
     font-size: 1rem;
   }
@@ -262,4 +283,3 @@
   .cta-section h2 {
     font-size: 1.8rem;
   }
-}
