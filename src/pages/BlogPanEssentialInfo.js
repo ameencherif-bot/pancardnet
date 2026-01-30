@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import '../styles/Blog.css';
 
 function BlogPanEssentialInfo() {
@@ -92,11 +92,8 @@ function BlogPanEssentialInfo() {
               <div className="blog-cta">
                 <h4>Want more PAN resources?</h4>
                 <p>
-                  Read our other articles or visit the PAN Card Resizer tool for practical help in preparing and managing PAN documents.
+                  Read our other articles for practical help in preparing and managing PAN documents.
                 </p>
-                <a href="https://pancard-ag91.vercel.app/" target="_blank" rel="noopener noreferrer">
-                  <Button variant="primary" size="lg">Visit Main Website</Button>
-                </a>
               </div>
             </div>
           </Col>

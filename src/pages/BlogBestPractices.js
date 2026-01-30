@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { Container, Row, Col, Button, Alert } from 'react-bootstrap';
-import { CheckSVG } from '../components/SVGIcons';
+import { Container, Row, Col, Alert } from 'react-bootstrap';
 import '../styles/Blog.css';
 
 // SEO meta & schema for this article
@@ -57,7 +56,7 @@ function BlogBestPractices() {
           <Col lg={8} className="mx-auto">
             <div className="blog-content">
               <div className="blog-image-container text-center mb-4">
-                <CheckSVG />
+                <img src="/blog1.png" loading="lazy" alt="Best Practices for PAN Card Document Management" className="img-fluid rounded"/>
               </div>
 
               <h2>Complete Best Practices Guide for PAN Card Management</h2>
@@ -254,18 +253,9 @@ function BlogBestPractices() {
               <div className="blog-cta">
                 <h4>Implement These Best Practices Today</h4>
                 <p>
-                  Visit our main website and use the PAN Card Resizer tool to ensure your documents meet all technical specifications 
+                  Follow these best practices in your document management workflow to ensure your documents meet all technical specifications 
                   and quality standards. Professional results, every time.
                 </p>
-                <a 
-                  href="https://pancard-ag91.vercel.app/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  <Button variant="primary" size="lg">
-                    Visit Main Website
-                  </Button>
-                </a>
               </div>
             </div>
           </Col>

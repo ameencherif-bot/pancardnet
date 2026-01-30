@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import '../styles/Blog.css';
 
 function BlogPanApplyUpdate() {
@@ -92,11 +92,8 @@ function BlogPanApplyUpdate() {
               <div className="blog-cta">
                 <h4>Need help preparing documents?</h4>
                 <p>
-                  Use our PAN Card Resizer tool to get images and documents ready for submission—optimized to official requirements.
+                  Explore our comprehensive guides to get images and documents ready for submission—optimized to official requirements.
                 </p>
-                <a href="https://pancard-ag91.vercel.app/" target="_blank" rel="noopener noreferrer">
-                  <Button variant="primary" size="lg">Visit Main Website</Button>
-                </a>
               </div>
             </div>
           </Col>

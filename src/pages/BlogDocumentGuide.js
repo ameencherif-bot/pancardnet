@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
-import { DocumentSVG } from '../components/SVGIcons';
+import { Container, Row, Col } from 'react-bootstrap';
 import '../styles/Blog.css';
 
 // SEO meta & schema for this article
@@ -57,7 +56,7 @@ function BlogDocumentGuide() {
           <Col lg={8} className="mx-auto">
             <div className="blog-content">
               <div className="blog-image-container text-center mb-4">
-                <DocumentSVG />
+                <img src="/blog2.png" loading="lazy" alt="Document Size Guide for PAN Cards" className="img-fluid rounded"/>
               </div>
 
               <h2>Understanding Document Sizes and Specifications</h2>
@@ -215,18 +214,9 @@ function BlogDocumentGuide() {
               <div className="blog-cta">
                 <h4>Need Help Resizing Your Documents?</h4>
                 <p>
-                  Visit our main website where the PAN Card Resizer tool automatically handles all these specifications, 
-                  making it easy to get perfect results every time.
+                  Follow our comprehensive guides to learn professional document resizing techniques and ensure all specifications are met 
+                  for perfect results every time.
                 </p>
-                <a 
-                  href="https://pancard-ag91.vercel.app/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  <Button variant="primary" size="lg">
-                    Visit Main Website
-                  </Button>
-                </a>
               </div>
             </div>
           </Col>

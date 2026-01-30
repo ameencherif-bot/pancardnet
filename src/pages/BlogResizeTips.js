@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
-import { ResizeSVG } from '../components/SVGIcons';
+import { Container, Row, Col } from 'react-bootstrap';
 import '../styles/Blog.css';
 
 // SEO meta & schema for this article
@@ -57,7 +56,7 @@ function BlogResizeTips() {
           <Col lg={8} className="mx-auto">
             <div className="blog-content">
               <div className="blog-image-container text-center mb-4">
-                <ResizeSVG />
+                <img src="/blog1.png" loading="lazy" alt="Professional PAN Card Resize Tips" className="img-fluid rounded"/>
               </div>
 
               <h2>How to Resize Your PAN Card Like a Professional</h2>
@@ -94,11 +93,7 @@ function BlogResizeTips() {
 
               <h3>Recommended Tools</h3>
               <p>
-                For quick and reliable PAN card resizing, we recommend using{' '}
-                <a href="https://pancardresizer.net" target="_blank" rel="noopener noreferrer">
-                  PAN Card Resizer
-                </a>
-                , which provides professional-grade resizing with automatic optimization.
+                For quick and reliable PAN card resizing, there are several professional-grade tools available that provide automatic optimization. Use the techniques and best practices outlined in this guide to achieve perfect results.
               </p>
 
               <h3>Quality Checklist</h3>
@@ -145,18 +140,9 @@ function BlogResizeTips() {
               <div className="blog-cta">
                 <h4>Ready to Resize Your Documents?</h4>
                 <p>
-                  Visit our main website to use the professional PAN Card Resizer tool to optimize your documents instantly. 
-                  No software installation required!
+                  Apply the techniques and best practices from this guide to optimize your documents. 
+                  With proper knowledge and methods, you can achieve professional results instantly!
                 </p>
-                <a 
-                  href="https://pancard-ag91.vercel.app/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  <Button variant="primary" size="lg">
-                    Visit Main Website
-                  </Button>
-                </a>
               </div>
             </div>
           </Col>
