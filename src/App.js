@@ -12,6 +12,7 @@ import BlogBestPractices from './pages/BlogBestPractices';
 import Blogs from './pages/Blogs';
 import BlogPanEssentialInfo from './pages/BlogPanEssentialInfo';
 import BlogPanApplyUpdate from './pages/BlogPanApplyUpdate';
+import PanResizer from './pages/PanResizer';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/blog/best-practices" element={<BlogBestPractices />} />
             <Route path="/blog/pan-essential-info" element={<BlogPanEssentialInfo />} />
             <Route path="/blog/pan-apply-update" element={<BlogPanApplyUpdate />} />
+            <Route path="/tools/pan-resizer" element={<PanResizer />} />
           </Routes>
         </main>
         <Footer />

@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, Button, Card, Image } from 'react-bootstrap';
+import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import { DocumentSVG, ResizeSVG, CheckSVG } from '../components/SVGIcons';
 import '../styles/Home.css';
+import PanResizer from './PanResizer';
 
 // SEO meta and basic schema will be added when the Home component mounts
 
@@ -31,9 +32,17 @@ function Home() {
     script.text = JSON.stringify(schema);
     document.head.appendChild(script);
 
+    // Preload hero image for better LCP and PageSpeed
+    const preloadImg = document.createElement('link');
+    preloadImg.rel = 'preload';
+    preloadImg.as = 'image';
+    preloadImg.href = '/hero.webp';
+    document.head.appendChild(preloadImg);
+
     return () => {
       const el = document.getElementById('home-schema');
       if (el) el.remove();
+      if (preloadImg) preloadImg.remove();
     };
   }, []);
 
@@ -49,20 +58,65 @@ function Home() {
                 Your comprehensive resource for PAN card resizing, document optimization, and digital file management. 
                 Learn professional techniques and best practices from industry experts. Whether you're preparing documents for official submissions or managing digital files, we've got you covered with practical guides, step-by-step tutorials, and expert insights.
               </p>
-              <a 
-                href="https://pancardresizer.net/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <Button variant="primary" size="lg" className="cta-button">
-                  Try PAN Card Resizer Tool
-                </Button>
-              </a>
+              <div style={{display:'flex', gap:12}}>
+                <a 
+                  href="https://pancardresizer.net/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="primary" size="lg" className="cta-button">
+                    Try PAN Card Resizer Tool
+                  </Button>
+                </a>
+              </div>
             </Col>
             <Col lg={6} className="text-center">
               <div className="hero-image">
-                <Image src="/blog1.png" alt="PAN Card Resizer Tool" fluid />
+                <img
+                  src="/hero.webp"
+                  alt="PAN Card Resizer Tool"
+                  width="1200"
+                  height="800"
+                  loading="eager"
+                  decoding="async"
+                  fetchpriority="high"
+                  style={{ maxWidth: '100%', height: 'auto', borderRadius: 8 }}
+                />
               </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+
+      <section className="divider-section">
+        <Container>
+          <Row>
+            <Col lg={8} className="mx-auto text-center">
+              <hr className="section-divider" />
+            </Col>
+          </Row>
+        </Container>
+      </section>
+
+      {/* Tool Section */}
+      <section className="tool-section">
+        <Container>
+          <Row className="align-items-center">
+            <Col lg={12} className="mb-4 mb-lg-0">
+            <h2 className="section-title mt-5">PAN Card Resizer Tool</h2>
+              <PanResizer />
+            </Col>
+            <Col lg={6}>
+              <p>
+                Easily resize your PAN card images to meet official submission requirements. Our free online tool allows you to upload your PAN card image and adjust its dimensions and file size without compromising quality. Perfect for tax filings, bank applications, and other official uses.
+              </p>
+              <ul className="tool-features-list">
+                <li>Supports JPG, PNG, and PDF formats</li>
+                <li>Customizable dimensions and file size</li>
+                <li>High-quality output with minimal loss</li>
+                <li>User-friendly interface for quick resizing</li>
+                <li>Completely free to use with no hidden costs</li>
+              </ul>
             </Col>
           </Row>
         </Container>
@@ -72,6 +126,7 @@ function Home() {
       <section className="features-section">
         <Container>
           <h2 className="section-title">Our Resource Features</h2>
+
           <Row className="g-4">
             <Col md={4}>
               <Card className="feature-card">
